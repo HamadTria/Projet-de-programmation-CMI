@@ -1,0 +1,89 @@
+@font-face
+{
+    font-family: "Klasik";
+    src: url('./font/Klasik Regular.otf')
+}
+
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+.banner
+{
+    height: 100vh;
+    width: 100%;
+    background: url(./images/forest.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.navbar
+{
+    display: flex;
+    width: 85%;
+    margin: auto;
+    padding: 35px 0;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo
+{
+    cursor: pointer;
+    margin-top: -5px;
+    width: 75px;
+    background: #111;
+    border-radius: 50%;
+    padding: 5px;
+    box-shadow: 0 0 0 5px rgb(35, 35, 35),
+    0 0 0 10px rgb(46, 46, 46),
+    0 0 0 15px rgb(55, 55, 55);
+}
+
+.navbar ul li
+{
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+}
+
+.navbar ul li a
+{
+    font-size: 30px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.navbar ul li
+{
+    font-family: Klasik;
+    padding: 10px;
+    border-radius: 20px 10%;
+    background-color: rgb(22, 21, 21);
+    text-decoration: none;
+    user-select: none;
+}
+
+.text
+{
+    width: 20%;
+    height: 50vh;
+    font-size: 30px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: Consolas;
+    padding: 10px;
+    border-radius: 20px 0px;
+    background-color: rgb(22, 21, 21);
+    text-align: center;
+    margin: auto;
+}
+
+.text:hover
+{
+    content: url();
+}
