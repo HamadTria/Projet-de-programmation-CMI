@@ -27,6 +27,7 @@
     padding: 35px 0;
     align-items: center;
     justify-content: space-between;
+    font-family: Klasik;
 }
 
 .logo
@@ -42,11 +43,9 @@
     0 0 0 15px rgb(55, 55, 55);
 }
 
-.navbar ul li
+.logo:hover
 {
-    list-style: none;
-    display: inline-block;
-    margin: 0 20px;
+    background-color: rgb(20, 20, 20);
 }
 
 .navbar ul li a
@@ -55,35 +54,40 @@
     color: #fff;
     text-decoration: none;
     text-transform: uppercase;
+    user-select: none;
+
+    padding: 10px;
+    border-radius: 20px 10%;
+    background-color: rgb(22, 21, 21);
 }
 
 .navbar ul li
 {
-    font-family: Klasik;
-    padding: 10px;
-    border-radius: 20px 10%;
-    background-color: rgb(22, 21, 21);
-    text-decoration: none;
-    user-select: none;
+    position: relative;
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
 }
 
-.text
+.navbar ul li a:hover
 {
-    width: 20%;
-    height: 50vh;
-    font-size: 30px;
-    color: #fff;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-family: Consolas;
-    padding: 10px;
-    border-radius: 20px 0px;
-    background-color: rgb(22, 21, 21);
-    text-align: center;
-    margin: auto;
+    background-color: rgb(28, 28, 28)
 }
 
-.text:hover
+.navbar ul li a::after
 {
-    content: url();
+    content: '';
+    height: 1.5px;
+    width: 0;
+    max-width: calc(80% - 25px);
+    background-color: rgb(116, 149, 31);
+    position: absolute;
+    left: 12.5px;
+    bottom: -3px;
+    transition: 0.5s;
+}
+
+.navbar ul li a:hover::after
+{
+    width: 100%;
 }
