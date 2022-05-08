@@ -45,12 +45,12 @@
 
 .logo:hover
 {
-    background-color: rgb(20, 20, 20);
+    background-color: rgb(25, 25, 25);
 }
 
 .navbar ul li a
 {
-    font-size: 30px;
+    font-size: 40px;
     color: #fff;
     text-decoration: none;
     text-transform: uppercase;
@@ -90,4 +90,69 @@
 .navbar ul li a:hover::after
 {
     width: 100%;
+}
+
+.text-content
+{
+    font-family: consolas;
+    font-size: 15px;
+    text-align: center;
+    color: 	#111;
+}
+
+.text-content h1
+{
+    width: 55%;
+    padding: 5px;
+    margin: auto;
+    margin-top: 2%;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2%;
+}
+
+.box
+{
+    margin-left: 10%;
+    margin-right: 10%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.box div
+{
+    width: 30%;
+    display: inline-flex;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 50vh;
+    transition: 0.5s;
+}
+
+.box div h2
+{
+    margin-bottom: 5%;
+}
+
+.box .left:hover
+{
+    width: 35%;
+    font-size: 18px;
+    margin-left: -5%;
+}
+
+.box .middle:hover
+{
+    width: 35%;
+    font-size: 18px;
+}
+
+.box .right:hover
+{
+    width: 35%;
+    font-size: 18px;
+    margin-right: -5%;
 }

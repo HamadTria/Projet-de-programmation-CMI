@@ -1,0 +1,30 @@
+Entité :;Variable :;Définition :;Exploitable ?
+;;;
+Vallée;Valley;Nom du transect;Oui
+~;Longitude;Longitude de la vallée;Oui
+~;Latitude;Latitude de la vallée;Oui
+;;;
+Station;Station;Nom de la station;Oui
+~;Range;Rang altitudinal;Oui
+~;Altitude;Altitude de la station;Oui
+;;;
+Arbre;code;Individu;Oui
+~;Species;Espèce;Oui
+~;VH;Volume du houppier (m3);Oui
+~;H;Hauteur (m);Oui
+~;SH;Surface de projection du houppier (m2);Oui
+;;;
+Récolte;ID;;Oui
+~;DD;Jour de récolte en jour julien;Oui
+~;harv_num;Numéro de la récolte ;Non
+~;harv;Semaine de récolte en jour julien ;Non
+~;Year;Année de récolte;Oui
+~;Date;Date de récolte (calendar) ;Oui
+~;Ntot1;Quantité totale de glands produits sans les fruits mis à germer et sans les glands détérioré. Estimation de oneacorn se fait à partir de Ntot1;Oui
+~;Ntot;Quantité totale de glands produits;Oui
+~;Mtot;Masse totale (g);Oui
+~;oneacorn;Masse moyenne d'un gland (g);Oui
+~;tot_Germ;Quantité totale de glands mis à germer;Non
+~;M_Germ;Masse des glands mis à germer ;Non
+~;N_Germ;Nombre de glands qui ont gérmé ;Non
+~;rate_Germ;Ratio de glands qui ont germé (%);Non
