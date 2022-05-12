@@ -19,3 +19,6 @@ print(e)
 
 f = 'AA '.join(['5', '55'])
 print(f)
+
+a = {'A': 1, 'B': 2}
+print(a['A', 'B'])

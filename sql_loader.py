@@ -64,9 +64,9 @@ def tableInitialize(cursor):
             Tree_id INTEGER NOT NULL,
             Station_id INTEGER NOT NULL,
             Valley_id INTEGER NOT NULL,
-            FOREIGN KEY (Harvest_id) REFERENCES harvest(Id_)
-            FOREIGN KEY (Tree_id) REFERENCES tree(Id_)
-            FOREIGN KEY (Station_id) REFERENCES station(Id_)
+            FOREIGN KEY (Harvest_id) REFERENCES harvest(Id_),
+            FOREIGN KEY (Tree_id) REFERENCES tree(Id_),
+            FOREIGN KEY (Station_id) REFERENCES station(Id_),
             FOREIGN KEY (Valley_id) REFERENCES valley(Id_)
         );
     ''')
