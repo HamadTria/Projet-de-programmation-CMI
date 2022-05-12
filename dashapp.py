@@ -4,8 +4,8 @@ import sql_loader as sl
 con = sqlite3.connect('ABunchOfTrees.db')
 cur = con.cursor()
 
-sl.sqlInitialize(cur)
-sl.dataInitialization(cur)
+sl.tableInitialize(cur)
+sl.databaseInitialize(cur)
 
 con.commit()
 con.close()

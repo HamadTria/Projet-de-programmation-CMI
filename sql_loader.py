@@ -1,7 +1,6 @@
 import csv
-from re import S
 
-def sqlInitialize(cursor):
+def tableInitialize(cursor):
     #Creation of the 'Harvest' table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS harvest (
@@ -72,33 +71,34 @@ def sqlInitialize(cursor):
         );
     ''')
 
-def dataInitialization(cursor):
+def databaseInitialize(cursor):
     with open('Repro_IS.csv', 'r') as csvfile:
         reader = csv.DictReader(csvfile, delimiter=';')
 
-        #We get the names of our tables
+        #We get the names of our tables.
         table_names = [names[0] for names in cursor.execute('SELECT name FROM sqlite_master WHERE type = \'table\' AND name NOT LIKE \'sqlite_%\';').fetchall()]
-        #We get the name of the columns of each table and we store it in a dictionary
+        #We get the name of the columns of each table and we store it in a dictionary.
         columns_names = {table_name: [names[0] for names in cursor.execute('SELECT name FROM pragma_table_info(\'{}\');'.format(table_name)).fetchall()[1:]] for table_name in table_names}
 
         for row in reader:
-            ids = []
+            ids = [] #We get the 'Id_' of the different tables for the 'links' table.
             for table_name in table_names:
-                query = 'SELECT Id_, {} FROM {} WHERE '.format(columns_names[table_name][0], table_name)
-                query += columns_names[table_name][0] + ' = ?;' if table_name != 'links' else '{} = ?;'.format(' = ? AND '.join(columns_names[table_name]))
-                check = cursor.execute(query, (row[columns_names[table_name][0]], ) if table_name != 'links' else ids).fetchone()
+                #We modify the current row to replace the 'NA' by None according to the table.
+                rows = list(map(row.get, columns_names[table_name]))
+                rows = list(map(lambda x: None if x in ['NA', 'NA ', ''] else x, rows))
 
-                if not check is None:
-                    if table_name == 'harvest':
-                        print(check[1])
-                    ids.append(check[0])
+                query = 'SELECT Id_, {} FROM {} WHERE '.format(columns_names[table_name][0], table_name)
+                query += ' IS ? AND '.join(columns_names[table_name])
+                
+                #We check if all the fields are the same.
+                checkIfExist = cursor.execute(query + ' IS ?;', rows if table_name != 'links' else ids).fetchone()
+
+                if not checkIfExist is None:
+                    ids.append(checkIfExist[0])
                     continue
 
                 query = 'INSERT INTO {} ({}) VALUES '.format(table_name, ', '.join(columns_names[table_name]))
                 query += '({});'.format(', '.join(['?' for i in columns_names[table_name]]))
-
-                rows = list(map(row.get, columns_names[table_name]))
-                rows = list(map(lambda x: 'NULL' if x is None or x in ['NA', 'NA ', ''] else x, rows))
 
                 cursor.execute(query, rows if table_name != 'links' else ids)
                 ids.append(cursor.execute('SELECT Id_ FROM {} ORDER BY Id_ DESC LIMIT 1;'.format(table_name)).fetchone()[0])
