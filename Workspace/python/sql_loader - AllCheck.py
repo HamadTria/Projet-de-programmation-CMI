@@ -83,19 +83,19 @@ def databaseInitialize(cursor):
         for row in reader:
             ids = [] #We get the 'Id_' of the different tables for the 'links' table.
             for table_name in table_names:
-                query = 'SELECT Id_, {} FROM {} WHERE '.format(columns_names[table_name][0], table_name)
-                query += ' IS ? AND '.join([columns_names[table_name][0]] if table_name != 'links' else columns_names[table_name])
+                #We modify the current row to replace the 'NA' by None according to the table.
+                rows = list(map(row.get, columns_names[table_name]))
+                rows = list(map(lambda x: None if x in ['NA', 'NA ', ''] else x, rows))
 
+                query = 'SELECT Id_, {} FROM {} WHERE '.format(columns_names[table_name][0], table_name)
+                query += ' IS ? AND '.join(columns_names[table_name])
+                
                 #We check if all the fields are the same.
-                checkIfExist = cursor.execute(query + ' IS ?;', (row[columns_names[table_name][0]], ) if table_name != 'links' else ids).fetchone()
+                checkIfExist = cursor.execute(query + ' IS ?;', rows if table_name != 'links' else ids).fetchone()
 
                 if not checkIfExist is None:
                     ids.append(checkIfExist[0])
                     continue
-
-                #We modify the current row to replace the 'NA' by None according to the table.
-                rows = list(map(row.get, columns_names[table_name]))
-                rows = list(map(lambda x: None if x in ['NA', 'NA ', ''] else x, rows))
 
                 query = 'INSERT INTO {} ({}) VALUES '.format(table_name, ', '.join(columns_names[table_name]))
                 query += '({});'.format(', '.join(['?' for i in columns_names[table_name]]))

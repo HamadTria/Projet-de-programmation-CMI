@@ -1,3 +1,4 @@
+
 a = [1, 2, 3]
 print(a[:-1])
 
@@ -15,3 +16,6 @@ if d:
 e = ['1', '2', '3', '4', '5', '6']
 e = list(map(lambda x: x.replace('1', '10'), e))
 print(e)
+
+f = 'AA '.join(['5', '55'])
+print(f)

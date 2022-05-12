@@ -32,6 +32,7 @@
 
 .logo
 {
+    content: url('./images/logo.png');
     cursor: pointer;
     margin-top: -5px;
     width: 75px;
