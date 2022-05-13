@@ -1,4 +1,4 @@
-def page(html):
+def homepage(html):
     return [html.Div(className="banner",
         children=[
             html.Div(className="navbar",
