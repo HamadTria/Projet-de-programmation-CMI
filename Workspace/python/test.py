@@ -21,4 +21,11 @@ f = 'AA '.join(['5', '55'])
 print(f)
 
 a = {'A': 1, 'B': 2}
-print(a['A', 'B'])
+print(a['A'])
+
+a = 'Je suis {0} {0} !'.format('1', '2')
+print(a)
+
+a = 'Okiland'
+b = f'O-{a}'
+print(b)
