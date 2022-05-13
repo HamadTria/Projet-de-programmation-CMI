@@ -5,16 +5,21 @@ import plotly.figure_factory as ff
 from dash import dcc
 from dash import dash_table
 
-#Multi-Value Dropdown (In use : Displot chart)
-def build_multi_value_dropdown_menu_distplot(menu_items):
+# Multi-Value Dropdown (In use : Displot chart)
+
+
+def build_multi_value_dropdown_menu_distplot():
     return dcc.Dropdown(
         id="multi_value_dropdown",
-        options=menu_items,
-        value=menu_items,
+        options=[{"label": x, "value": x} for x in ['Josbaig', 'Le-Hourcq',
+                                                    'Bager', 'Gabas', 'Artouste', 'Laveyron', 'Ibos', 'Gedre-Bas', 'Papillon', 'Peguere']],
+        value=['Josbaig', 'Le-Hourcq','Bager',],
         multi=True
     )
 
-#Unique-Value Dropdown (In use : Animated bar chart)
+# Unique-Value Dropdown (In use : Animated bar chart)
+
+
 def build_dropdown_menu(menu_items):
     return dcc.Dropdown(
         id="dropdown",
@@ -23,7 +28,9 @@ def build_dropdown_menu(menu_items):
         clearable=False,
     )
 
-#Multi-Value Dropdown (In use : Scatter matrix)
+# Multi-Value Dropdown (In use : Scatter matrix)
+
+
 def build_dropdown_menu_multi():
     return dcc.Dropdown(
         id="dropdown6",
@@ -34,25 +41,31 @@ def build_dropdown_menu_multi():
         multi=True
     )
 
+
 def init_graph_distplot():
     return dcc.Graph(id="distplot_chart")
+
 
 def init_animated_bar_chart():
     return dcc.Graph(id="animated_bar_chart")
 
+
 def init_scatter_matrix():
     return dcc.Graph(id="scatter_matrix")
+
 
 def build_figure_distplot(df, labels):
     fig = ff.create_distplot(df, labels, bin_size=0.1)
     fig.update_layout(height=800, xaxis_title="Oneacorn mean weight (g)")
     return fig
 
+
 def build_figure_animated_bar_chart(df, attributes):
     x, y, t, z = attributes
     fig = px.bar(df, x=z, y=x, animation_frame=t,
                  animation_group=x, color=y, log_y=True)
     return fig
+
 
 def build_figure_scatter_matrix(df, dims):
     fig = px.scatter_matrix(df, dimensions=df[dims], color='Station')

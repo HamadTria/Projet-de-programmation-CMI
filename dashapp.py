@@ -1,6 +1,7 @@
 import model.data
 import view.GUI
 
+
 import dash
 from dash import html
 from dash import dcc
@@ -69,8 +70,7 @@ app.layout = html.Div([
 def render_page_content(pathname):
 
     if pathname == "/":
-        multi_value_dropdown = view.GUI.build_multi_value_dropdown_menu_distplot(
-            model.data.get_unique_values('Station'))
+        multi_value_dropdown = view.GUI.build_multi_value_dropdown_menu_distplot()
         graph = view.GUI.init_graph_distplot()
         return [
             html.Div([
@@ -78,7 +78,7 @@ def render_page_content(pathname):
             ]),
             html.Hr(style={'width': '100%', 'align': 'center'}),
             html.H1('Le distplot affiche une combinaison de représentations statistiques de données numériques. Un histogramme, un graphique kde et un graphique rugueux sont affichés.', id='line_view',
-                    style={'textAlign': 'center', 'marginTop': '10px', 'font-size': '1.5rem'}),
+                    style={'textAlign': 'center', 'font-family': 'system-ui'}),
             html.Div([
                 graph
             ])
