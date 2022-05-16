@@ -42,7 +42,8 @@ app.layout = html.Div([
 def update_map(value):
     px.set_mapbox_access_token("pk.eyJ1IjoidGVzdHRlc3Rlc3Rlc3RlcyIsImEiOiJjbDE3azhuZnQwNG85M2dvNHplMDZrNXBvIn0.3u58ECQNK1hoxK4gj6YObg")
     dff_map = df_map[df_map['Valley'] == value]
-    fig = px.scatter_mapbox(dff_map, lat='Latitude', lon='Longitude', hover_name='Station', color='Ntot')
+    fig = px.scatter_mapbox(dff_map, lat='Latitude', lon='Longitude', hover_name='Station',
+                        zoom=5.5, title = "<b>Geographic representation of harvest stations</b>")
     return fig
 
 @app.callback(
@@ -50,9 +51,10 @@ def update_map(value):
     Input('map', 'hoverData'))
 def update_timeseries(hoverData):
     station_name = hoverData['points'][0]['hovertext']
-    dff = df[df['Station'] == station_name]
-    #dff = dff[['Ntot']].groupby(by=['Year']).mean()
-    return px.bar(dff, x='Year', y='Ntot', color='Year',title=station_name)
+    mask = df['Station'] == station_name
+    sub_df = df[mask]
+    sub_df = sub_df.groupby('Year').mean()
+    return px.line(sub_df, x =sub_df.index, y='Ntot', title=station_name)
 
 if __name__ == '__main__':
     app.run_server(debug=True)
