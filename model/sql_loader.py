@@ -77,9 +77,9 @@ def databaseInitialize(cursor):
         Last_id = 0 #Save the id of the current table for the foreign key of the next table.
         for row in reader:
             for table_name in table_names:
+                #We check if the first field are the same.
                 query = 'SELECT Id_, {0} FROM {1} WHERE {0} IS ?;'.format(columns_names[table_name][0], table_name)
-
-                #We check if all the fields are the same.
+                
                 checkIfExist = cursor.execute(query, (row[columns_names[table_name][0]], )).fetchone()
 
                 if not checkIfExist is None:
@@ -96,4 +96,4 @@ def databaseInitialize(cursor):
                 query += '({});'.format(', '.join(['?' for i in columns_names[table_name]]))
 
                 cursor.execute(query, rows)
-                Last_id = cursor.execute('SELECT Id_ FROM {} ORDER BY Id_ DESC LIMIT 1;'.format(table_name)).fetchone()[0]
+                Last_id = cursor.lastrowid
