@@ -1,5 +1,6 @@
 from tkinter import MULTIPLE
 from dash import Dash, html, dcc, Input, Output, dash_table
+import dash_bootstrap_components as dbc
 import pandas as pd
 import numpy as np
 import plotly.express as px
@@ -37,7 +38,6 @@ app.layout = html.Div([
     style={ 'display': 'inline-block', 'font-weight': 'bold', 'border': '1px solid black', 
     'border-radius': '4px','box-shadow': '0 10px 6px -6px #777'}),
     html.Div([
-        html.P("Mean values: "),
         html.Div(id='data_table'),
     ],
     style={ 'width': '50%', 'display': 'inline-block', 'font-weight': 'bold', 'border': '1px solid black', 
@@ -65,8 +65,11 @@ def update_timeseries(hoverData):
     station_name = hoverData['points'][0]['hovertext']
     mask = df['Station'] == station_name
     sub_df = df[mask]
-    sub_df = sub_df.groupby('Year').mean()
-    return px.bar(sub_df, x=sub_df.index, y='Ntot', title='<b>Station: {}</b>'.format(station_name))
+    sub_df = sub_df.groupby('DD').mean()
+    sub_df.index.set_names(["Harvest day in julian"], inplace=True)
+    print(sub_df)
+
+    return px.line(sub_df, x=sub_df.index, y='Ntot', title='<b>Station: {}</b>'.format(station_name))
 
 
 @app.callback(
@@ -76,9 +79,8 @@ def data_table(hoverData):
     station_name = hoverData['points'][0]['hovertext']
     mask = df['Station'] == station_name
     sub_df = df[mask]
-    sub_df = sub_df.groupby('Station')[
-        'Altitude', 'Ntot', 'Mtot', 'oneacorn'].mean()
-    return dash_table.DataTable(data=sub_df.to_dict('records'))
+    sub_df = sub_df.groupby('Station')['Ntot', 'Mtot', 'oneacorn'].mean()
+    return dbc.Label('Mean values for {}'.format(station_name)), dash_table.DataTable(data=sub_df.to_dict('records'))
 
 
 if __name__ == '__main__':
