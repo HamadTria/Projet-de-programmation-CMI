@@ -41,7 +41,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This project revolves around a data set regarding the Quercus tree species. A group of researchers collected this data, and our job was to help interpret and visualize it.
+This project revolves around a data set regarding the Quercus tree species. A group of researchers collected this data, our job was to help interpret and visualize it.
 
 These were our three work axis:
 * Creating a coherent database from the .csv file
