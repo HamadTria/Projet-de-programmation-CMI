@@ -43,10 +43,10 @@
 
 This project revolves around a data set regarding the Quercus tree species. A group of researchers collected this data, our job was to help interpret and visualize it.
 
-These were our three work axis:
+These were our three work axes:
 * Creating a coherent database from the .csv file
-* Choosing the most relevant variables set to work with 
-* Illustrating the data thanks to interactive figures
+* Choosing the most relevant variables sets to work with 
+* Illustrating the data with interactive figures
 
 This project uses the MVC (Model-View-Controller) pattern. This "separation of concerns" provides for a better division of labor and improved maintenance in the long term.
 
@@ -82,7 +82,7 @@ If not already done install Dash
 
 ### Installation
 
-To install and set up the app follow these steps:
+To install and set up the app:
 
 1. Clone the repo
    ```sh
