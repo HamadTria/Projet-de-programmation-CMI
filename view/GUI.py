@@ -11,7 +11,7 @@ def navbar():
             html.A(
                 dbc.Row(
                     [
-                        dbc.Col(html.Img(src='../assets/image/logo.png', height="50px")),
+                        dbc.Col(html.Img(src='../assets/image/logo.png', height="40px")),
                         dbc.Col(dbc.NavbarBrand("Home", className="ms-2")),
                     ],
                     align="center",

@@ -28,7 +28,7 @@ def render_page_content(pathname):
 			view.navbar(),
 			html.Div(
 				[
-					view.button_group(data.get_valley(con)),
+					view.button_group(data.get_valley()),
 					view.list_group()
 				], style={'display':'inline-flex', 'width':'100%', 'justify-content':'center'}),
 			html.Div(
@@ -56,7 +56,7 @@ def refresh_error_bar(nbr1, nbr2, nbr3, n_intervals, hover):
 		return {}, n_intervals
 	hover = hover['points'][0]['x']
 
-	df = data.error_Bar_data(con, column, hover)
+	df = data.error_Bar_data(column, hover)
 
 	if input_id == 'auto_refresh':
 		return view.error_Bar_figure(df, column, n_intervals, hover), n_intervals
@@ -82,11 +82,11 @@ def active_setter(nbr1, nbr2, nbr3):
 	Output("histogram_figure", "figure"),
 	[Input("radios", "value")])
 def histogram(value):
-	list_valley = data.get_valley(con)
-	df = data.histogram_data(con, list_valley[value]['label'])
+	list_valley = data.get_valley()
+	df = data.histogram_data(list_valley[value]['label'])
 
 	return view.histogram_figure(df)
 
 if __name__=='__main__':
 	app.run_server(debug=True)
-con.close()
+sl.get_connexion().close()
