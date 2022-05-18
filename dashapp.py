@@ -8,8 +8,10 @@ import view.GUI as view
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], suppress_callback_exceptions=True)
 
+
 sl.tableInitialize()
 sl.databaseInitialize()
+sl.databaseAddCoordinate()
 
 content = html.Div(id="page-content", children=[])
 
@@ -25,6 +27,10 @@ def render_page_content(pathname):
 	if pathname == '/':
 		return [
 			view.navbar(),
+		]
+	if pathname == '/stats':
+		return [
+			view.navbar(),
 			html.Div(
 				[
 					view.button_group(data.get_valley()),
@@ -36,6 +42,18 @@ def render_page_content(pathname):
 					dcc.Graph(id='error_bar'), 
 				], style={'display':'inline-flex', 'width':'100%', 'justify-content':'center'}),
 			dcc.Interval(id='auto_refresh', interval=50, n_intervals=0, max_intervals=9)	
+		]
+	elif pathname == '/map':
+		return [
+			view.navbar(),
+		]
+	elif pathname == '/data':
+		return [
+			view.navbar(),
+		]
+	else:
+		return [
+			'The page you request does not exist...'
 		]
 
 @app.callback(

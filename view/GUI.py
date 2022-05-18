@@ -18,63 +18,57 @@ def navbar():
                     className="g-0 h-10 p-1 text-white bg-success rounded-3",
                 ),
                 href="/",
-                style={"textDecoration": "none"},
+                className='text'
             ),
             html.A(
                 dbc.Row(
                     [
                         dbc.Col(
-                            html.Div(
-                                [
-                                    dbc.Button("Stats", id="stats-pop", color="light", outline=True, style={'font-size':'22px'}),
-                                    dbc.Popover(
-                                        dbc.PopoverBody("My `target` is `popover-target`."),
-                                        target="stats-pop",
-                                        trigger="hover",
-                                        placement='bottom'
-                                    ),
-                                ]
-                            ),
-                            md=3,
+                            [
+                                dbc.Button("Stats", className='main_button', href="/stats", id="stats-pop", color="light", outline=True),
+                                dbc.Popover(
+                                    dbc.PopoverBody("Statistical data visualization"),
+                                    target="stats-pop",
+                                    trigger="hover",
+                                    placement='bottom'
+                                )
+                            ],
+                            className='Col'
                         ),
                         dbc.Col(
-                            html.Div(
-                                [
-                                    dbc.Button("Map", id="map-pop", color="light", outline=True, style={'font-size':'22px'}),
-                                    dbc.Popover(
-                                        dbc.PopoverBody("My `target` is `popover-target`."),
-                                        target="map-pop",
-                                        trigger="hover",
-                                        placement='bottom'
-                                    ),
-                                ]
-                            ),
-                            md=3,
+                            [
+                                dbc.Button("Map", className='main_button', href="/map", id="map-pop", color="light", outline=True),
+                                dbc.Popover(
+                                    dbc.PopoverBody("Visualization on a map"),
+                                    target="map-pop",
+                                    trigger="hover",
+                                    placement='bottom'
+                                )
+                            ],
+                            className='Col'
                         ),
                         dbc.Col(
-                            html.Div(
-                                [
-                                    dbc.Button("Data", id="data-pop", color="light", outline=True, style={'font-size':'22px'}),
-                                    dbc.Popover(
-                                        dbc.PopoverBody("My `target` is `popover-target`."),
-                                        target="data-pop",
-                                        trigger="hover",
-                                        placement='bottom'
-                                    ),
-                                ]
-                            ),
-                            md=3,
+                            [
+                                dbc.Button("Data", className='main_button', href="/data", id="data-pop", color="light", outline=True),
+                                dbc.Popover(
+                                    dbc.PopoverBody("Data visualizer"),
+                                    target="data-pop",
+                                    trigger="hover",
+                                    placement='bottom'
+                                )
+                            ],
+                            className='Col'
                         )
                     ],
                     align="center",
-                    style={'user-select': 'none', 'display':'flex', 'justify-content':'space-between', 'width':'100%'},
+                    className='items'
                 )
             )
         ]
     ),
     color="dark",
     dark=True,
-    style={'width':'100%', 'height':'80px', 'margin-bottom':'10px'}
+    className='navbar_container'
 )
 
 def button_group(options):
@@ -98,48 +92,27 @@ def list_group():
         [
         dbc.ListGroupItem(
             [
-            html.Div(
-                [
-                html.H5("Ntot ~", className="mb-n1"),
-                html.Div(
-                    [
-                    html.Small("Data sanity : "),
-                    html.Small("Clean !", className="text-success")
-                    ])
-                ], className="d-flex w-100 justify-content-between"),
-            html.Hr(style={'margin-top':'1px', 'margin-bottom':'5px'}),
-            html.Small("Total quantity of acorns produced.")
-            ], id='Ntot', action=True, active=True),
+                html.H5("Ntot ~", className="mb-n1 text"),
+                html.Hr(style={'margin-top':'1px', 'margin-bottom':'5px'}),
+                html.Small("Total quantity of acorns produced.", className='text')
+            ],
+            id='Ntot', action=True, active=True, className='list_group_item'),
 
         dbc.ListGroupItem(
             [
-            html.Div(
-                [
-                html.H5("Oneacorn ~", className="mb-n1"),
-                html.Div(
-                    [
-                    html.Small("Data sanity : "),
-                    html.Small("Clean !", className="text-success")
-                    ])
-                ], className="d-flex w-100 justify-content-between"),
-            html.Hr(style={'margin-top':'1px', 'margin-bottom':'5px'}),
-            html.Small("Average mass of an acorn (g).")
-            ], id='oneacorn', action=True),
+                html.H5("Oneacorn ~", className="mb-n1 text"),
+                html.Hr(style={'margin-top':'1px', 'margin-bottom':'5px'}),
+                html.Small("Average mass of an acorn (g).", className='text')
+            ],
+            id='oneacorn', action=True, className='list_group_item'),
 
         dbc.ListGroupItem(
             [
-            html.Div(
-                [
-                html.H5("Ntot1 ~", className="mb-n1"),
-                html.Div(
-                    [
-                    html.Small("Data sanity : "),
-                    html.Small("Unfinished", className="text-danger")
-                    ])
-                ], className="d-flex w-100 justify-content-between"),
-            html.Hr(style={'margin-top':'1px', 'margin-bottom':'5px'}),
-            html.Small("Total quantity of acorns produced without sprouted fruit and without deteriorated acorns.")
-            ], id='Ntot1', action=True),
+                html.H5("Ntot1 ~", className="mb-n1 text"),
+                html.Hr(style={'margin-top':'1px', 'margin-bottom':'5px'}),
+                html.Small("Total quantity of acorns produced without sprouted fruit and without deteriorated acorns.", className='text')
+            ],
+            id='Ntot1', action=True, className='list_group_item'),
         ],horizontal=True, className="mb-0 w-50 p-1")
 
 def error_Bar_figure(df, column, index, hover):

@@ -105,3 +105,14 @@ def databaseInitialize():
                 Last_id = cursor.lastrowid
 
         con.commit()
+
+def databaseAddCoordinate():
+    with open('./model/Lat-Long_byStation.csv', 'r') as csvfile:
+        reader = csv.DictReader(csvfile, delimiter=';')
+        for row in reader:
+            query = 'UPDATE Station SET {} = ? WHERE Station="{}";'.format(' = ?, '.join(['Latitude', 'Longitude']), row['Station'])
+            
+            rows = list(map(row.get, ['Latitude', 'Longitude']))
+
+            cursor.execute(query, rows)
+        con.commit()
