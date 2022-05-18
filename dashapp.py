@@ -26,6 +26,17 @@ def render_page_content(pathname):
 	if pathname == '/':
 		return [
 			view.navbar(),
+			html.Div(
+				[
+				html.Div(
+					[
+						view.lottie('https://assets6.lottiefiles.com/private_files/lf30_noclpt6t.json'),
+						"Hamad Tria | Alexandre Leys"
+					],
+				className='box'
+				)
+			],
+			className='page')
 		]
 	if pathname == '/stats':
 		return [
