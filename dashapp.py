@@ -61,6 +61,7 @@ def render_page_content(pathname):
 				className='box graphs'),
 			html.Div(
 				[
+					html.H5("Select the desired variable ►", className='align'),
 					view.list_group()
 				],
 				className='box variable_selector'),
