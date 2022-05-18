@@ -1,6 +1,4 @@
 import pandas as pd
-import plotly.express as px
-import plotly.graph_objects as go
 import model.sql_loader as sl
 
 def get_valley(all='Both'):
@@ -44,3 +42,6 @@ def get_groupby_values_df(value, groupby, select_variables):
         sub_df.index.set_names(["Harvest day in julian"], inplace=True)
         # rename the 'DD' column by 'Harvest day in julian'
     return sub_df
+
+def get_csv():
+    return sl.get_csv_in_df(pd)

@@ -6,6 +6,9 @@ cursor = con.cursor()
 def get_connexion():
     return con
 
+def get_csv_in_df(pd):
+    return pd.read_csv('./model/Repro_IS.csv', sep=';')
+
 def tableInitialize():
     #Creation of the 'Valley' table
     cursor.execute('''

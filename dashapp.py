@@ -103,10 +103,15 @@ def render_page_content(pathname):
 	elif pathname == '/data':
 		return [
 			view.navbar(),
+			html.H1('Données forêt pyrénnées (tableur)', id='table_view', style={'textAlign':'left'}),
+			html.Hr(style={'width': '75%', 'align': 'center'}),
+			html.Div(id='data_table', children = view.data_table_end(data.get_csv()))
 		]
 	else:
 		return [
-			'The page you request does not exist...'
+			html.H1("404: Not found", className="text-danger"),
+			html.Hr(),
+			html.P(f"The pathname {pathname} was not recognised...")
 		]
 
 @app.callback(

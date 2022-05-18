@@ -1,5 +1,3 @@
-from turtle import width
-from click import style
 import plotly.graph_objects as go
 import plotly.express as px
 import dash_bootstrap_components as dbc
@@ -186,3 +184,13 @@ def build_timeseries(sub_df, station_name):
 def build_table(sub_df, station_name):
     table = dbc.Label('Mean values for {}'.format(station_name), style={'font-weight': 'bold'}), dash_table.DataTable(data=sub_df.to_dict('records'))
     return table
+
+def data_table_end(dataframe):
+    return dash_table.DataTable(
+        data=dataframe.to_dict('records'),
+        columns=[{"name": i, "id": i} for i in dataframe.columns],
+        page_size=30,
+        sort_action="native",
+        sort_mode="multi",
+        style_data={'whiteSpace': 'normal', 'height': 'auto'},
+)
