@@ -130,13 +130,15 @@ This page has two interactive figures, a bar chart on the left and an error bar 
 <img width="320" height="240" src="assets/image/bar_chart.png" alt="bar chart">
 <img width="320" height="240" src="assets/image/error_bar_chart.png" alt="error bar chart">
 
-The bar chart shows the tree height average per station. By hovering on a station bar, the graph on the right refreshes with an animation.
+The bar chart shows the tree height average per station. By hovering on a station bar, the graph on the right refreshes with an animation. (the animation spped might be changed in the code if too slow or too fast)
 
 <img width="320" height="240" src="assets/image/bar_chart_gif.gif" alt="bar_chart_gif">
 
 The error bar chart on the right shows the average Ntot value over the years. For each year, the error bar indicates the min, max, and mean values of Ntot for that year.
 
 Thanks to the button-group in the bottom right, one can change between Ntot, Oneacorn, and Ntot1.
+
+Thanks to the button-group at the top of the page, one can choose between Luz, Ossau, or both.
 
 
 ### Map
