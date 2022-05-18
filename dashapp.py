@@ -8,7 +8,6 @@ import view.GUI as view
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], suppress_callback_exceptions=True)
 
-
 sl.tableInitialize()
 sl.databaseInitialize()
 sl.databaseAddCoordinate()
@@ -32,17 +31,23 @@ def render_page_content(pathname):
 		return [
 			view.navbar(),
 			html.Div(
+		[
+			html.Div(
 				[
-					view.button_group(data.get_valley()),
-					view.list_group()
-				], style={'display':'inline-flex', 'width':'100%', 'justify-content':'center'}),
+					html.H5("Select the desired valley(s) :", className='align'),
+					view.button_group(data.get_valley())
+				], className='box'),
 			html.Div(
 				[
 					dcc.Graph(id='histogram_figure'),
-					dcc.Graph(id='error_bar'), 
-				], style={'display':'inline-flex', 'width':'100%', 'justify-content':'center'}),
+					dcc.Graph(id='error_bar'),
+				], className='box graphs'),
+			html.Div(
+				[
+					view.list_group()
+				], className='box variable_selector'),
 			dcc.Interval(id='auto_refresh', interval=50, n_intervals=0, max_intervals=9)	
-		]
+		], className='page')]
 	elif pathname == '/map':
 		return [
 			view.navbar(),
@@ -70,7 +75,7 @@ def refresh_error_bar(nbr1, nbr2, nbr3, n_intervals, hover):
 	column = 'Ntot' if nbr1 else 'oneacorn' if nbr2 else 'Ntot1' if nbr3 else 'Ntot'
 
 	if hover is None:
-		return {}, n_intervals
+		return view.empty_graph(), n_intervals
 	hover = hover['points'][0]['x']
 
 	df = data.error_Bar_data(column, hover)

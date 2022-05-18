@@ -30,3 +30,33 @@
     font-size: 12px;
     justify-content: center;
 }
+
+.page {
+    margin: 0 10%;
+}
+
+.box {
+    margin-top: 5px;
+    padding: 10px;
+    border: 0;
+    border-radius: 10px;
+    background-color: beige;
+    display: inline-flex;
+    width: 100%;
+}
+
+.graphs {
+    justify-content: center;
+    background-color: beige;
+}
+
+.variable_selector {
+    justify-content: end;
+}
+
+.align {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto 0;
+}

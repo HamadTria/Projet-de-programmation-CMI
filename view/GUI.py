@@ -92,7 +92,7 @@ def list_group():
         [
         dbc.ListGroupItem(
             [
-                html.H5("Ntot ~", className="mb-n1 text"),
+                html.H5("Ntot", className="mb-n1 text"),
                 html.Hr(style={'margin-top':'1px', 'margin-bottom':'5px'}),
                 html.Small("Total quantity of acorns produced.", className='text')
             ],
@@ -100,7 +100,7 @@ def list_group():
 
         dbc.ListGroupItem(
             [
-                html.H5("Oneacorn ~", className="mb-n1 text"),
+                html.H5("Oneacorn", className="mb-n1 text"),
                 html.Hr(style={'margin-top':'1px', 'margin-bottom':'5px'}),
                 html.Small("Average mass of an acorn (g).", className='text')
             ],
@@ -108,12 +108,12 @@ def list_group():
 
         dbc.ListGroupItem(
             [
-                html.H5("Ntot1 ~", className="mb-n1 text"),
+                html.H5("Ntot1", className="mb-n1 text"),
                 html.Hr(style={'margin-top':'1px', 'margin-bottom':'5px'}),
                 html.Small("Total quantity of acorns produced without sprouted fruit and without deteriorated acorns.", className='text')
             ],
             id='Ntot1', action=True, className='list_group_item'),
-        ],horizontal=True, className="mb-0 w-50 p-1")
+        ],horizontal=True)
 
 def error_Bar_figure(df, column, index, hover):
     fig = go.Figure(
@@ -126,10 +126,24 @@ def error_Bar_figure(df, column, index, hover):
                 array = df['max'].iloc[:index+1] if index != 0 else [df['max'].iloc[index]],
                 arrayminus = df['min'].iloc[:index+1] if index != 0 else [df['min'].iloc[index]]))],
         layout = go.Layout(
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
             xaxis = dict(range=[2010, 2021], autorange=False, zeroline=False, title='Year'),
             yaxis = dict(range=[df['min'].min() - df['mean'].max(), df['max'].max() + 2*df['mean'].max()], autorange=False, zeroline=False, title=f'Average of {column}'),
             title_text = f"Average {column} over the years at the {hover} station.", hovermode="closest"))
     return fig
 
 def histogram_figure(df):
-    return px.histogram(df, x='Station', y='H', color='Station', barmode='relative', histfunc='avg', labels={'H':'tree height'})
+    fig = px.histogram(df, x='Station', y='H', color='Station', barmode='relative', histfunc='avg', labels={'H':'tree height'})
+    fig.update_layout(
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)')
+    return fig
+
+def empty_graph():
+    return go.Figure(
+        layout = go.Layout(
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)'
+        )
+    )

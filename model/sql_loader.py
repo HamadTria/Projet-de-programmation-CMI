@@ -110,7 +110,7 @@ def databaseAddCoordinate():
     with open('./model/Lat-Long_byStation.csv', 'r') as csvfile:
         reader = csv.DictReader(csvfile, delimiter=';')
         for row in reader:
-            query = 'UPDATE Station SET {} = ? WHERE Station="{}";'.format(' = ?, '.join(['Latitude', 'Longitude']), row['Station'])
+            query = 'UPDATE Station SET {} = ? WHERE Station="{}" AND Station IS NULL;'.format(' = ?, '.join(['Latitude', 'Longitude']), row['Station'])
             
             rows = list(map(row.get, ['Latitude', 'Longitude']))
 
