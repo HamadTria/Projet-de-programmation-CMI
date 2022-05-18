@@ -67,7 +67,6 @@ def update_timeseries(hoverData):
     sub_df = df[mask]
     sub_df = sub_df.groupby('DD').mean()
     sub_df.index.set_names(["Harvest day in julian"], inplace=True)
-    print(sub_df)
 
     return px.line(sub_df, x=sub_df.index, y='Ntot', title='<b>Station: {}</b>'.format(station_name))
 
