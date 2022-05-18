@@ -32,13 +32,13 @@ def render_page_content(pathname):
 						[
 							html.H1("Projet programmation - CMI L2")
 						],
-					className='align box margin'),
+					className='align box'),
 					html.Div(
 						[
 							view.lottie('https://assets3.lottiefiles.com/packages/lf20_rc0btai6.json'),
 							html.H1("Hamad Tria\nAlexandre Leys")
 						],
-					className='box align')
+					className='box align margin')
 				],
 			className='page')
 		]
@@ -55,8 +55,8 @@ def render_page_content(pathname):
 				className='box'),
 			html.Div(
 				[
-					dcc.Graph(id='histogram_figure'),
-					dcc.Graph(id='error_bar'),
+					view.init_figure('histogram_figure'),
+					view.init_figure('error_bar')
 				],
 				className='box graphs'),
 			html.Div(
