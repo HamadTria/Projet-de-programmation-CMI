@@ -153,7 +153,7 @@ The map is interactive. Time-series graph and the mean-values-table refresh acco
 
 <img width="320" height="240" src="assets/image/map_gif.gif" alt="map_gif">
 
-Thanks to the dropdown on the left, one can choose between Luz and Ossau.
+Thanks to the dropdown on the left, one can choose to show the stations of Luz or Ossau on the map.
   
 The time-series graph shows the evolution of the Ntot value with respect to the harvest day.
 
