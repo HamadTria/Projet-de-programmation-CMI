@@ -104,7 +104,7 @@ def render_page_content(pathname):
 	elif pathname == '/data':
 		return [
 			view.navbar(),
-			html.H1('Données forêt pyrénnées (tableur)', id='table_view', style={'textAlign':'left'}),
+			html.H1('Pyrenees forest data (spreadsheet)', id='table_view', style={'textAlign':'left'}),
 			html.Hr(style={'width': '75%', 'align': 'center'}),
 			html.Div(id='data_table', children = view.data_table_end(data.get_csv()))
 		]
