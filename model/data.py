@@ -1,44 +1,18 @@
 import pandas as pd
 
 df = pd.read_csv('model/Repro_IS.csv', sep=';')
+df_map = pd.read_csv('model/Stations.csv', sep=';')
 
+def get_dropdown_values(select_column):
+    return df_map[select_column].unique()
 
-def get_unique_values(select_column):
-    return df[select_column].unique()
+def get_unique_values_map(select_column,value):
+    return df_map[df_map[select_column] == value]
 
-# Retourne une liste de liste des Oneacorn (en supprimant les 'NaN' des valeurs) de chaque Station en fonction du Multi-Value Dropdown.
-
-
-def extract_df_distplot(multi_value_dropdown):
-    return [df[(df['Station'] == Station) & (df['oneacorn'].notna())]['oneacorn'].to_numpy() for Station in multi_value_dropdown]
-
-
-def extract_df_animated_bar_chart(value, select_column):
-    mask = df[select_column] == value
-    df_valley = df[mask]
-    # attributes used to specify grouping (and view)
-    x_att = 'Ntot'
-    y_att = 'VH'
-    t_att = 'Year'
-    z_att = 'Station'
-
-    df_agreg = df_valley[[x_att, y_att, t_att, z_att]
-                         ].sort_values(by=[t_att], ascending=True)
-    df_agreg = df_valley[[x_att, y_att, t_att, z_att]
-                         ].groupby(by=[z_att, t_att]).sum()
-    df_agreg = df_agreg.reset_index()
-
-    if value == 'Luz':
-        mask = df_agreg['Year'] != 2011
-        df_agreg = df_agreg[mask]
-
-    if value == 'Ossau':
-        mask = df_agreg['Year'] != 2011
-        df_agreg = df_agreg[mask]
-        mask = df_agreg['Year'] != 2013
-        df_agreg = df_agreg[mask]
-    return df_agreg, (x_att, y_att, t_att, z_att)
-
-
-def extract_df_scatter_matrix():
-    return df
+def get_groupby_values_df(select_column,value,groupby,select_variables):
+    sub_df = df[df[select_column] == value]
+    sub_df = sub_df.groupby(groupby)[select_variables].mean()
+    if groupby == 'DD':
+        sub_df.index.set_names(["Harvest day in julian"], inplace=True) 
+        #rename the 'DD' column by 'Harvest day in julian'
+    return sub_df

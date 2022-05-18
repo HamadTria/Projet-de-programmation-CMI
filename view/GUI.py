@@ -1,84 +1,35 @@
-from tkinter import Y
+from dash import dcc, dash_table, html
+import dash_bootstrap_components as dbc
 import plotly.express as px
-import plotly.figure_factory as ff
 
-from dash import dcc
-from dash import dash_table
+mapbox_token = "pk.eyJ1IjoidGVzdHRlc3Rlc3Rlc3RlcyIsImEiOiJjbDE3azhuZnQwNG85M2dvNHplMDZrNXBvIn0.3u58ECQNK1hoxK4gj6YObg"
 
-# Multi-Value Dropdown (In use : Displot chart)
-
-
-def build_multi_value_dropdown_menu_distplot():
+def build_dropdown(options):
     return dcc.Dropdown(
-        id="multi_value_dropdown",
-        options=[{"label": x, "value": x} for x in ['Josbaig', 'Le-Hourcq',
-                                                    'Bager', 'Gabas', 'Artouste', 'Laveyron', 'Ibos', 'Gedre-Bas', 'Papillon', 'Peguere']],
-        value=['Josbaig', 'Le-Hourcq','Bager',],
-        multi=True
-    )
+                options= options,
+                value='Ossau',
+                id="dropdown",
+            )
 
-# Unique-Value Dropdown (In use : Animated bar chart)
+def init_timeseries():
+    return dcc.Graph(id='timeseries')
 
+def init_map():
+    return dcc.Graph(id='map',hoverData={'points': [{'hovertext': 'Josbaig'}]})
 
-def build_dropdown_menu(menu_items):
-    return dcc.Dropdown(
-        id="dropdown",
-        options=[{"label": x, "value": x} for x in menu_items],
-        value=menu_items[1],
-        clearable=False,
-    )
+def init_data_table():
+    return html.Div(id='data_table')
 
-# Multi-Value Dropdown (In use : Scatter matrix)
-
-
-def build_dropdown_menu_multi():
-    return dcc.Dropdown(
-        id="dropdown6",
-        options=[{"label": x, "value": x} for x in ['Range', 'Altitude',
-                                                    'harv', 'Year', 'Ntot1', 'Ntot', 'Mtot', 'oneacorn', 'VH', 'H', 'SH',
-                                                    'tot_Germ', 'M_Germ', 'N_Germ', 'rate_Germ']],
-        value=['oneacorn', 'Ntot', 'Mtot'],
-        multi=True
-    )
-
-
-def init_graph_distplot():
-    return dcc.Graph(id="distplot_chart")
-
-
-def init_animated_bar_chart():
-    return dcc.Graph(id="animated_bar_chart")
-
-
-def init_scatter_matrix():
-    return dcc.Graph(id="scatter_matrix")
-
-
-def build_figure_distplot(df, labels):
-    fig = ff.create_distplot(df, labels, bin_size=0.1)
-    fig.update_layout(height=800, xaxis_title="Oneacorn mean weight (g)")
+def build_map(dff_map):
+    px.set_mapbox_access_token(mapbox_token)
+    fig = px.scatter_mapbox(dff_map, lat='Latitude', lon='Longitude', hover_name='Station',
+                            color_discrete_sequence=["red"], mapbox_style="satellite-streets", zoom=5,
+                            title="<b>Hover on a station to visualise timeseries and mean values</b>")
     return fig
 
-
-def build_figure_animated_bar_chart(df, attributes):
-    x, y, t, z = attributes
-    fig = px.bar(df, x=z, y=x, animation_frame=t,
-                 animation_group=x, color=y, log_y=True)
+def build_timeseries(sub_df, station_name):
+    fig = px.line(sub_df, x=sub_df.index, y='Ntot', title='<b>Station: {}</b>'.format(station_name))
     return fig
 
-
-def build_figure_scatter_matrix(df, dims):
-    fig = px.scatter_matrix(df, dimensions=df[dims], color='Station')
-    return fig
-
-
-def data_table(dataframe):
-    return dash_table.DataTable(data=dataframe.to_dict('records'),
-                                columns=[{"name": i, "id": i}
-                                         for i in dataframe.columns],
-                                page_size=30,
-                                sort_action="native",
-                                sort_mode="multi",
-                                style_data={'whiteSpace': 'normal',
-                                            'height': 'auto'},
-                                )
+def build_table(sub_df, station_name):
+    return dbc.Label('Mean values for {}'.format(station_name)), dash_table.DataTable(data=sub_df.to_dict('records'))
