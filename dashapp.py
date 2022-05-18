@@ -8,7 +8,6 @@ import view.GUI as view
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], suppress_callback_exceptions=True)
 
-con, cur = sl.get_connexion_and_cursor()
 sl.tableInitialize()
 sl.databaseInitialize()
 

@@ -3,8 +3,8 @@ import csv, sqlite3
 con = sqlite3.connect('./model/ABunchOfTrees.db', check_same_thread=False)
 cursor = con.cursor()
 
-def get_connexion_and_cursor():
-    return con, cursor
+def get_connexion():
+    return con
 
 def tableInitialize():
     #Creation of the 'Valley' table
