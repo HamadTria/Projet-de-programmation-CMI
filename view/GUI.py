@@ -1,15 +1,10 @@
 from dash import dcc, dash_table, html
 import dash_bootstrap_components as dbc
 import plotly.express as px
-
 mapbox_token = "pk.eyJ1IjoidGVzdHRlc3Rlc3Rlc3RlcyIsImEiOiJjbDE3azhuZnQwNG85M2dvNHplMDZrNXBvIn0.3u58ECQNK1hoxK4gj6YObg"
 
 def build_dropdown(options):
-    return dcc.Dropdown(
-                options= options,
-                value='Ossau',
-                id="dropdown",
-            )
+    return dcc.Dropdown(options= options, value='Ossau', id="dropdown")
 
 def init_timeseries():
     return dcc.Graph(id='timeseries')
@@ -32,4 +27,5 @@ def build_timeseries(sub_df, station_name):
     return fig
 
 def build_table(sub_df, station_name):
-    return dbc.Label('Mean values for {}'.format(station_name)), dash_table.DataTable(data=sub_df.to_dict('records'))
+    table = dbc.Label('Mean values for {}'.format(station_name)), dash_table.DataTable(data=sub_df.to_dict('records'))
+    return table
