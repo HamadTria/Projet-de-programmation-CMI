@@ -58,6 +58,9 @@ These were our three work axes:
 This project uses the MVC (Model-View-Controller) pattern. This "separation of concerns" provides for a better division of labor and improved maintenance in the long term.
   
 The project is also avalable online on <a href="https://mine.pythonanywhere.com/">pythonanywhere</a>. (The online version is slightly slower due to server dependencies)
+  
+PS: throughout the creation of the project, an MVC branch was created on top of the main branch. However, the two branches have been merged. 
+Solely the main branch must be taken into account.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
