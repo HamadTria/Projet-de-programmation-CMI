@@ -1,0 +1,126 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+.banner
+{
+    height: 80px;
+    width: 100%;
+    background-color: #222529;
+}
+
+.navbar
+{
+    display: flex;
+    width: 85%;
+    height: 100%;
+    margin: auto;
+    align-items: center;
+    justify-content: space-between;
+    font-family: Klasik;
+}
+
+.navbar .logo
+{
+    content: url('./assets/image/logo.png');
+    cursor: pointer;
+    width: 40px;
+    background: #111;
+    border-radius: 50%;
+    padding: 5px;
+    box-shadow: 0 0 0 5px rgb(35, 35, 35),
+    0 0 0 10px rgb(46, 46, 46),
+    0 0 0 15px rgb(55, 55, 55);
+}
+
+.logo:hover
+{
+    background-color: rgb(80, 79, 79);
+}
+
+.navbar ul li a
+{
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 40px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    user-select: none;
+}
+
+.navbar ul li
+{
+    position: relative;
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+}
+
+.navbar ul li a::after
+{
+    content: '';
+    height: 1.5px;
+    width: 0;
+    max-width: calc(80% - 25px);
+    background-color: rgb(116, 149, 31);
+    position: absolute;
+    left: 12.5px;
+    bottom: -3px;
+    transition: 0.5s;
+}
+
+.navbar ul li a:hover::after
+{
+    width: 100%;
+}
+
+.popover__title {
+    font-size: 24px;
+    line-height: 36px;
+    text-decoration: none;
+    color: rgb(228, 68, 68);
+    text-align: center;
+    padding: 15px 0;
+  }
+  
+  .popover__wrapper {
+    position: relative;
+    margin-top: 1.5rem;
+    display: inline-block;
+  }
+  .popover__content {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    left: -150px;
+    transform: translate(0, 10px);
+    background-color: #bfbfbf;
+    padding: 1.5rem;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    width: auto;
+  }
+  .popover__content:before {
+    position: absolute;
+    z-index: -1;
+    content: "";
+    right: calc(50% - 10px);
+    top: -8px;
+    border-style: solid;
+    border-width: 0 10px 10px 10px;
+    border-color: transparent transparent #bfbfbf transparent;
+    transition-duration: 0.3s;
+    transition-property: transform;
+  }
+  .popover__wrapper:hover .popover__content {
+    z-index: 10;
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0, -20px);
+    transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+  }
+  .popover__message {
+    text-align: center;
+  }
+  

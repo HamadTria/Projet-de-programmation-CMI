@@ -35,7 +35,7 @@
     content: url('./image/logo.png');
     cursor: pointer;
     margin-top: -5px;
-    width: 75px;
+    width: 50px;
     background: #111;
     border-radius: 50%;
     padding: 5px;
@@ -46,7 +46,7 @@
 
 .logo:hover
 {
-    background-color: rgb(25, 25, 25);
+    background-color: rgb(80, 79, 79);
 }
 
 .navbar ul li a

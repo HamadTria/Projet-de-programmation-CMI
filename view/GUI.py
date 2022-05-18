@@ -11,7 +11,7 @@ def navbar():
             html.A(
                 dbc.Row(
                     [
-                        dbc.Col(html.Img(src='../assets/image/logo.png', height="40px")),
+                        dbc.Col(html.Img(src='../assets/image/logo.png', height="30px")),
                         dbc.Col(dbc.NavbarBrand("Home", className="ms-2")),
                     ],
                     align="center",
@@ -26,24 +26,48 @@ def navbar():
                         dbc.Col(
                             html.Div(
                                 [
-                                    dbc.Button("Visualisation", color="light", outline=True),
-                                ],
-                                style={'margin-right':'100px'}
+                                    dbc.Button("Stats", id="stats-pop", color="light", outline=True, style={'font-size':'22px'}),
+                                    dbc.Popover(
+                                        dbc.PopoverBody("My `target` is `popover-target`."),
+                                        target="stats-pop",
+                                        trigger="hover",
+                                        placement='bottom'
+                                    ),
+                                ]
                             ),
-                            md=6,
+                            md=3,
                         ),
                         dbc.Col(
                             html.Div(
                                 [
-                                    dbc.Button("Data", color="light", outline=True),
+                                    dbc.Button("Map", id="map-pop", color="light", outline=True, style={'font-size':'22px'}),
+                                    dbc.Popover(
+                                        dbc.PopoverBody("My `target` is `popover-target`."),
+                                        target="map-pop",
+                                        trigger="hover",
+                                        placement='bottom'
+                                    ),
                                 ]
                             ),
-                            md=6,
+                            md=3,
+                        ),
+                        dbc.Col(
+                            html.Div(
+                                [
+                                    dbc.Button("Data", id="data-pop", color="light", outline=True, style={'font-size':'22px'}),
+                                    dbc.Popover(
+                                        dbc.PopoverBody("My `target` is `popover-target`."),
+                                        target="data-pop",
+                                        trigger="hover",
+                                        placement='bottom'
+                                    ),
+                                ]
+                            ),
+                            md=3,
                         )
                     ],
                     align="center",
-                    className="g-0",
-                    style={'user-select': 'none'},
+                    style={'user-select': 'none', 'display':'flex', 'justify-content':'space-between', 'width':'100%'},
                 )
             )
         ]
