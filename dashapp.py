@@ -51,7 +51,33 @@ def render_page_content(pathname):
 	elif pathname == '/map':
 		return [
 			view.navbar(),
-		]
+			html.Div([
+    		html.H2("Geographic representation of harvest stations", className="display-4",
+            style={'font-family': 'system-ui', 'font-weight': 'bold'}),
+    		html.P("To interact hover on a station",
+           className="display-4", style={'font-family': 'system-ui'}),
+    		html.Div([
+        	html.Div([
+			view.build_dropdown(data.get_dropdown_values()),
+        	],
+        	style={'width': '49%', 'display': 'inline-block', 'font-weight': 'bold', 'border': '1px solid black', 
+    		'border-radius': '4px','box-shadow': '0 10px 6px -6px #777'})]),
+    		html.Div([
+        	view.init_timeseries(),
+    		],
+    		style={ 'display': 'inline-block', 'font-weight': 'bold', 'border': '1px solid black', 
+    		'border-radius': '4px','box-shadow': '0 10px 6px -6px #777'}),
+    		html.Div([
+        	view.init_map(),
+    		],
+    		style={ 'display': 'inline-block', 'font-weight': 'bold', 'border': '1px solid black', 
+    		'border-radius': '4px','box-shadow': '0 10px 6px -6px #777'}),
+    		html.Div([
+        	view.init_data_table(),
+    		],
+    		style={ 'width': '50%', 'display': 'inline-block', 'font-weight': 'bold', 'border': '1px solid black', 
+    		'border-radius': '4px','box-shadow': '0 10px 6px -6px #777','margin-left':'25%','margin-right':'25%'}),
+			])]
 	elif pathname == '/data':
 		return [
 			view.navbar(),
@@ -106,8 +132,33 @@ def active_setter(nbr1, nbr2, nbr3):
 def histogram(value):
 	list_valley = data.get_valley()
 	df = data.histogram_data(list_valley[value]['label'])
-
 	return view.histogram_figure(df)
+
+@app.callback(
+    Output('map', 'figure'),
+    Input('dropdown', 'value'))
+def update_map(value):
+    dff_map = data.get_unique_values_map(value)
+    fig = view.build_map(dff_map)
+    return fig
+
+@app.callback(
+    Output('timeseries', 'figure'),
+    Input('map', 'hoverData'))
+def update_timeseries(hoverData):
+    station_name = hoverData['points'][0]['hovertext']
+    sub_df = data.get_groupby_values_df(station_name,'DD','Ntot')
+    fig = view.build_timeseries(sub_df, station_name)
+    return fig
+
+@app.callback(
+    Output('data_table', 'children'),
+    Input('map', 'hoverData'))
+def data_table(hoverData):
+    station_name = hoverData['points'][0]['hovertext']
+    sub_df = data.get_groupby_values_df(station_name,'Station',('Altitude', 'SH','VH','H'))
+    table = view.build_table(sub_df, station_name)
+    return table
 
 if __name__=='__main__':
 	app.run_server(debug=True)
