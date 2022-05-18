@@ -10,7 +10,7 @@
   <h3 align="center">CMI ISI project</h3>
 
   <p align="center">
-    Authors: Alexandre Lyse and Hamad Tria
+    Authors: Alexandre Leys and Hamad Tria
   </p>
 </div>
 
