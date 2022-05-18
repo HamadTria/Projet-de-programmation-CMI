@@ -1,7 +1,59 @@
+from turtle import width
 import plotly.graph_objects as go
 import plotly.express as px
+import dash_bootstrap_components as dbc
+from dash import html
 
-def button_group(dbc, html, options):
+def navbar():
+    return dbc.Navbar(
+    dbc.Container(
+        [
+            html.A(
+                dbc.Row(
+                    [
+                        dbc.Col(html.Img(src='../assets/image/logo.png', height="50px")),
+                        dbc.Col(dbc.NavbarBrand("Home", className="ms-2")),
+                    ],
+                    align="center",
+                    className="g-0 h-10 p-1 text-white bg-success rounded-3",
+                ),
+                href="/",
+                style={"textDecoration": "none"},
+            ),
+            html.A(
+                dbc.Row(
+                    [
+                        dbc.Col(
+                            html.Div(
+                                [
+                                    dbc.Button("Visualisation", color="light", outline=True),
+                                ],
+                                style={'margin-right':'100px'}
+                            ),
+                            md=6,
+                        ),
+                        dbc.Col(
+                            html.Div(
+                                [
+                                    dbc.Button("Data", color="light", outline=True),
+                                ]
+                            ),
+                            md=6,
+                        )
+                    ],
+                    align="center",
+                    className="g-0",
+                    style={'user-select': 'none'},
+                )
+            )
+        ]
+    ),
+    color="dark",
+    dark=True,
+    style={'width':'100%', 'height':'80px', 'margin-bottom':'10px'}
+)
+
+def button_group(options):
     return html.Div(
     [
         dbc.RadioItems(
@@ -17,7 +69,7 @@ def button_group(dbc, html, options):
     className="radio-group",
 )
 
-def list_group(dbc, html):
+def list_group():
     return dbc.ListGroup(
         [
         dbc.ListGroupItem(

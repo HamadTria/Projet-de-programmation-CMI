@@ -1,6 +1,12 @@
-import csv
+import csv, sqlite3
 
-def tableInitialize(cursor):
+con = sqlite3.connect('./model/ABunchOfTrees.db', check_same_thread=False)
+cursor = con.cursor()
+
+def get_connexion_and_cursor():
+    return con, cursor
+
+def tableInitialize():
     #Creation of the 'Valley' table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS valley (
@@ -65,7 +71,7 @@ def tableInitialize(cursor):
         );
     ''')
 
-def databaseInitialize(cursor):
+def databaseInitialize():
     with open('./model/Repro_IS.csv', 'r') as csvfile:
         reader = csv.DictReader(csvfile, delimiter=';')
 
@@ -97,3 +103,5 @@ def databaseInitialize(cursor):
 
                 cursor.execute(query, rows)
                 Last_id = cursor.lastrowid
+
+        con.commit()

@@ -1,4 +1,4 @@
-import dash, sqlite3
+import dash
 from dash import dcc
 import dash_bootstrap_components as dbc
 from dash import Input, Output, html
@@ -8,12 +8,9 @@ import view.GUI as view
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], suppress_callback_exceptions=True)
 
-con = sqlite3.connect('ABunchOfTrees.db', check_same_thread=False)
-cur = con.cursor()
-
-sl.tableInitialize(cur)
-sl.databaseInitialize(cur)
-con.commit()
+con, cur = sl.get_connexion_and_cursor()
+sl.tableInitialize()
+sl.databaseInitialize()
 
 content = html.Div(id="page-content", children=[])
 
@@ -28,10 +25,11 @@ app.layout = html.Div([
 def render_page_content(pathname):
 	if pathname == '/':
 		return [
+			view.navbar(),
 			html.Div(
 				[
-					view.button_group(dbc, html, data.get_valley(con)),
-					view.list_group(dbc, html)
+					view.button_group(data.get_valley(con)),
+					view.list_group()
 				], style={'display':'inline-flex', 'width':'100%', 'justify-content':'center'}),
 			html.Div(
 				[
@@ -63,7 +61,6 @@ def refresh_error_bar(nbr1, nbr2, nbr3, n_intervals, hover):
 	if input_id == 'auto_refresh':
 		return view.error_Bar_figure(df, column, n_intervals, hover), n_intervals
 	return view.error_Bar_figure(df, column, 0, hover), 0
-
 
 @app.callback(
     Output("Ntot", "active"),
