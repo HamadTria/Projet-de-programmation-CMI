@@ -62,10 +62,6 @@
     margin: auto 0;
 }
 
-.margin {
-    margin-bottom: 5px;
-}
-
 .inline {
     display: inline-flex;
 }
