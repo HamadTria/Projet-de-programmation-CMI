@@ -86,7 +86,7 @@ If not already done install Dash
   ```sh
   pip3 install dash
   ```
-Also, if not already done install dash_extensions for gif like animations
+Also, if not already done, install dash_extensions for gif-like animations
 * Dash_extensions
   ```sh
   pip3 install dash_extensions
@@ -130,22 +130,22 @@ This page has two interactive figures, a bar chart on the left and an error bar 
 <img width="320" height="240" src="assets/image/bar_chart.png" alt="bar chart">
 <img width="320" height="240" src="assets/image/error_bar_chart.png" alt="error bar chart">
 
-The bar chart shows the tree height avarege per station. By hovering on a station bar, the graph on the right refreshes.
+The bar chart shows the tree height average per station. By hovering on a station bar, the graph on the right refreshes with an animation.
 
 <img width="320" height="240" src="assets/image/bar_chart_gif.gif" alt="bar_chart_gif">
 
 The error bar chart on the right shows the average Ntot value over the years. For each year, the error bar indicates the min, max, and mean values of Ntot for that year.
 
-Thank to the button-group in the bottom right, one can change between Ntot, Oneacorn and Ntot1.
+Thanks to the button-group in the bottom right, one can change between Ntot, Oneacorn, and Ntot1.
 
 
 ### Map
 
-This page illustrates a geographique representation of the stations. 
+This page illustrates a geographic representation of the stations. 
 
 <img width="320" height="240" src="assets/image/map.png" alt="map">
 
-The map is interactive. The time-series graph and the mean-values-table refresh accordingly by hovering on a station.
+The map is interactive. Time-series graph and the mean-values-table refresh accordingly by hovering over a station.
 
 <img width="320" height="240" src="assets/image/map_gif.gif" alt="map_gif">
 
