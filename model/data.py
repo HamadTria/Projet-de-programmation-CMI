@@ -32,7 +32,6 @@ def get_unique_values_map(value):
     df_map = pd.read_sql(
         f'SELECT Station, station.Latitude, station.Longitude FROM station JOIN valley ON valley.Id_=Valley_id AND Valley = "{value}";',
         sl.get_connexion())
-    print(df_map)
     return df_map
 
 

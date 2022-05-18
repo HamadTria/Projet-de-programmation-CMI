@@ -29,55 +29,62 @@ def render_page_content(pathname):
 		]
 	if pathname == '/stats':
 		return [
-			view.navbar(),
-			html.Div(
+		view.navbar(),
+		html.Div(
 		[
 			html.Div(
 				[
 					html.H5("Select the desired valley(s) :", className='align'),
 					view.button_group(data.get_valley())
-				], className='box'),
+				],
+				className='box'),
 			html.Div(
 				[
 					dcc.Graph(id='histogram_figure'),
 					dcc.Graph(id='error_bar'),
-				], className='box graphs'),
+				],
+				className='box graphs'),
 			html.Div(
 				[
 					view.list_group()
-				], className='box variable_selector'),
+				],
+				className='box variable_selector'),
 			dcc.Interval(id='auto_refresh', interval=50, n_intervals=0, max_intervals=9)	
-		], className='page')]
+		],
+		className='page')]
 	elif pathname == '/map':
 		return [
-			view.navbar(),
-			html.Div([
-    		html.H2("Geographic representation of harvest stations", className="display-4",
-            style={'font-family': 'system-ui', 'font-weight': 'bold'}),
-    		html.P("To interact hover on a station",
-           className="display-4", style={'font-family': 'system-ui'}),
-    		html.Div([
-        	html.Div([
-			view.build_dropdown(data.get_dropdown_values()),
+		view.navbar(),
+		html.Div(
+			[
+			html.H5("Geographic representation of harvest stations", className='box'),
+    		html.Div(
+				[
+				html.Div(
+					[
+						html.H5("Select a valley :"),
+						view.build_dropdown(data.get_dropdown_values()),
+						view.lottie('https://assets6.lottiefiles.com/private_files/lf30_noclpt6t.json'),
+						html.Div(
+							[
+								html.Hr(),
+								view.init_figure('timeseries', 'map timeseries')
+							],
+						className='box map')
+					],
+					className='data box'),
+				html.Div(
+					[
+						view.init_map(),
+						html.Hr(),
+						html.Div(id='data_table')
+					],
+					className='data box map')
+				],
+				className='box variable_selector')
         	],
-        	style={'width': '49%', 'display': 'inline-block', 'font-weight': 'bold', 'border': '1px solid black', 
-    		'border-radius': '4px','box-shadow': '0 10px 6px -6px #777'})]),
-    		html.Div([
-        	view.init_timeseries(),
-    		],
-    		style={ 'display': 'inline-block', 'font-weight': 'bold', 'border': '1px solid black', 
-    		'border-radius': '4px','box-shadow': '0 10px 6px -6px #777'}),
-    		html.Div([
-        	view.init_map(),
-    		],
-    		style={ 'display': 'inline-block', 'font-weight': 'bold', 'border': '1px solid black', 
-    		'border-radius': '4px','box-shadow': '0 10px 6px -6px #777'}),
-    		html.Div([
-        	view.init_data_table(),
-    		],
-    		style={ 'width': '50%', 'display': 'inline-block', 'font-weight': 'bold', 'border': '1px solid black', 
-    		'border-radius': '4px','box-shadow': '0 10px 6px -6px #777','margin-left':'25%','margin-right':'25%'}),
-			])]
+			className='page')
+		]
 	elif pathname == '/data':
 		return [
 			view.navbar(),
