@@ -4,7 +4,7 @@
 <br/>
 <div align="center">
   <a href="https://uf-mi.u-bordeaux.fr/sites/cmi-isi/">
-    <img src="images/logo_cmi.jpeg" alt="Logo">
+    <img src="assets/image/logo_cmi.jpeg" alt="Logo">
   </a>
 
   <h3 align="center">CMI ISI project</h3>
