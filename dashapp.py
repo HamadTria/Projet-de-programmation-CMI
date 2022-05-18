@@ -28,14 +28,18 @@ def render_page_content(pathname):
 			view.navbar(),
 			html.Div(
 				[
-				html.Div(
-					[
-						view.lottie('https://assets6.lottiefiles.com/private_files/lf30_noclpt6t.json'),
-						"Hamad Tria | Alexandre Leys"
-					],
-				className='box'
-				)
-			],
+					html.Div(
+						[
+							html.H1("Projet programmation - CMI L2")
+						],
+					className='align box margin'),
+					html.Div(
+						[
+							view.lottie('https://assets3.lottiefiles.com/packages/lf20_rc0btai6.json'),
+							html.H1("Hamad Tria\nAlexandre Leys")
+						],
+					className='box align')
+				],
 			className='page')
 		]
 	if pathname == '/stats':
@@ -116,10 +120,12 @@ def render_page_content(pathname):
 def refresh_error_bar(nbr1, nbr2, nbr3, n_intervals, hover):
 	ctx = dash.callback_context
 	input_id = ctx.triggered[0]["prop_id"].split(".")[0]
+
 	column = 'Ntot' if nbr1 else 'oneacorn' if nbr2 else 'Ntot1' if nbr3 else 'Ntot'
 
 	if hover is None:
-		return view.empty_graph(), n_intervals
+		df = data.error_Bar_data(column, 'Josbaig')
+		return view.error_Bar_figure(df, column, n_intervals, 'Josbaig'), n_intervals
 	hover = hover['points'][0]['x']
 
 	df = data.error_Bar_data(column, hover)

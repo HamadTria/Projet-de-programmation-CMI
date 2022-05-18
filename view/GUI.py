@@ -142,7 +142,7 @@ def error_Bar_figure(df, column, index, hover):
             plot_bgcolor='rgba(0,0,0,0)',
             xaxis = dict(range=[2010, 2021], autorange=False, zeroline=False, title='Year'),
             yaxis = dict(range=[df['min'].min() - df['mean'].max(), df['max'].max() + 2*df['mean'].max()], autorange=False, zeroline=False, title=f'Average of {column}'),
-            title_text = f"Average {column} over the years at the {hover} station.", hovermode="closest"))
+            title_text = f"Average {column} over the years at the {hover} station. (Fly over another station)", hovermode="closest"))
     return fig
 
 def histogram_figure(df):
@@ -151,14 +151,6 @@ def histogram_figure(df):
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)')
     return fig
-
-def empty_graph():
-    return go.Figure(
-        layout = go.Layout(
-            paper_bgcolor='rgba(0,0,0,0)',
-            plot_bgcolor='rgba(0,0,0,0)'
-        )
-    )
 
 def build_dropdown(options):
     return dcc.Dropdown(options= options, value='Ossau', id="dropdown")
