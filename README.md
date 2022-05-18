@@ -33,6 +33,13 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
+    <li>
+      <a href="#usage">Usage</a>
+      <ul>
+        <li><a href="#stats">Stats</a></li>
+        <li><a href="#map">Map</a></li>
+      </ul>
+    </li>
   </ol>
 </details>
 
@@ -79,6 +86,11 @@ If not already done install Dash
   ```sh
   pip3 install dash
   ```
+Also, if not already done install dash_extensions for gif like animations
+* Dash_extensions
+  ```sh
+  pip3 install dash_extensions
+  ```
 
 ### Installation
 
@@ -94,5 +106,55 @@ To install and set up the app:
    ```sh
     python3 dashapp.py
    ```
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+<!-- USAGE EXAMPLES -->
+## Usage
+
+Once the app is up and running, you can visit the <a href="http://127.0.0.1:8050/">website.</a>
+
+There are three pages accessible through the menu bar:
+
+* <a href="http://127.0.0.1:8050/stats">Stats</a>
+* <a href="http://127.0.0.1:8050/map">Map</a>
+* <a href="http://127.0.0.1:8050/data">Data</a>
+
+<img src="assets/image/menu_bar.png" alt="menu_bar">
+
+### Stats
+
+This page has two interactive figures, a bar chart on the left and an error bar chart on the right.
+
+<img width="320" height="240" src="assets/image/bar_chart.png" alt="bar chart">
+<img width="320" height="240" src="assets/image/error_bar_chart.png" alt="error bar chart">
+
+The bar chart shows the tree height avarege per station. By hovering on a station bar, the graph on the right refreshes.
+
+<img width="320" height="240" src="assets/image/bar_chart_gif.gif" alt="bar_chart_gif">
+
+The error bar chart on the right shows the average Ntot value over the years. For each year, the error bar indicates the min, max, and mean values of Ntot for that year.
+
+Thank to the button-group in the bottom right, one can change between Ntot, Oneacorn and Ntot1.
+
+
+### Map
+
+This page illustrates a geographique representation of the stations. 
+
+<img width="320" height="240" src="assets/image/map.png" alt="map">
+
+The map is interactive. The time-series graph and the mean-values-table refresh accordingly by hovering on a station.
+
+<img width="320" height="240" src="assets/image/map_gif.gif" alt="map_gif">
+
+The time-series graph shows the evolution of the Ntot value with respect to the harvest day.
+
+<img width="320" height="240" src="assets/image/time_series.png" alt="time-series">
+
+The mean-values table gives the average figures for the chosen station.
+
+<img width="500" height="200" src="assets/image/mean_values_table.png" alt="mean-values-table">
 
 <p align="right">(<a href="#top">back to top</a>)</p>
