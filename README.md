@@ -56,6 +56,8 @@ These were our three work axes:
 * Illustrating the data with interactive figures
 
 This project uses the MVC (Model-View-Controller) pattern. This "separation of concerns" provides for a better division of labor and improved maintenance in the long term.
+  
+The project is also avalable online on <a href="https://mine.pythonanywhere.com/">pythonanywhere</a>. (The online version is slightly slower due to server dependencies)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
